@@ -1,1 +1,1 @@
-An Image Rendring React Application.
+An React based Image Size Rendering application.
