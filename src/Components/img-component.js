@@ -66,7 +66,7 @@ class RenderImage extends React.Component{
         let final_width    = original_width;
         const Images_array = [Casey,Casey,Casey,Casey];
 
-        if(original_width >= set_width || original_height >= set_height ){
+        if(original_width <= set_width || original_height <= set_height ){
         	final_height = set_height;
         	final_width  = set_width;
         }
