@@ -16,13 +16,13 @@ class RenderImage extends React.Component{
         	original_dimensions:
         	  {
         		 original_height: '',
-        		 original_width: ''
+        		 original_width : ''
         	  },
 
             set_dimension:
               { 
                  	set_height: '',
-             		set_width: ''
+             		set_width : ''
               }
          };
 
@@ -32,46 +32,39 @@ class RenderImage extends React.Component{
      }
 
     onImgLoad({target:img}) {
-        this.setState({original_dimensions: { original_height: img.offsetHeight, original_width: img.offsetWidth }});
+        this.setState(
+        	{
+        		original_dimensions:
+        		 { 
+        		 	original_height: img.offsetHeight,
+        		 	original_width : img.offsetWidth 
+        		 }
+        	}
+        );
     }
 
 	handle_height_change(event){
-
 		this.setState({
-			set_dimension: Object.assign(
-			    {}, 
-			    this.state.set_dimension,
-			    { set_height: event.target.value }
-			  ),
-			  original_dimensions: Object.assign(
-			    {}, this.state.original_dimensions)
-		   })
+			set_dimension: Object.assign({}, this.state.set_dimension, { set_height: event.target.value } ),
+			original_dimensions: Object.assign({}, this.state.original_dimensions)
+		});
 	}
 
 	handle_width_change(event){
-
 	     this.setState({
-
-			set_dimension: Object.assign(
-			    {}, 
-			    this.state.set_dimension,
-			    { set_width: event.target.value }
-			  ),
-			  original_dimensions: Object.assign(
-			    {}, this.state.original_dimensions)
-		  })
+	     	set_dimension: Object.assign({},this.state.set_dimension,{ set_width: event.target.value }),
+			original_dimensions: Object.assign({}, this.state.original_dimensions)
+		 });
     }
-    
+
     render(){
 
         let {original_width, original_height} = this.state.original_dimensions;
-        let {set_width, set_height} = this.state.set_dimension;
+        let {set_width, set_height}           = this.state.set_dimension;
 
-        let final_height = original_height;
-        let final_width  = original_width;
+        let final_height   = original_height;
+        let final_width    = original_width;
         const Images_array = [Casey,Casey,Casey,Casey];
-
-        console.log('wow',this.state);
 
         if(original_width >= set_width || original_height >= set_height ){
         	final_height = set_height;
@@ -94,9 +87,3 @@ class RenderImage extends React.Component{
 }
 
 export default RenderImage;
-
-
-
-
-  // <p>original_dimensions original_width {original_width}, original_height {original_height}</p>
-  //               <p> set_dimension set_width {set_width}, set_height {set_height}  </p>
