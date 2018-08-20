@@ -90,14 +90,20 @@ class RenderImage extends React.Component{
             console.log(logo.original_height);
 
 
-            if(logo.original_height < this.state.set_dimension.set_height)
+            if(logo.original_height < this.state.set_dimension.set_height){
                  return( 
                     <div className="_display_inline" key = {key}>
-                      <img src={logo.src} height = {this.state.set_dimension.set_height} />
+                      <img src={logo.src} height = {this.state.set_dimension.set_height} width = {logo.original_width}/>
                     </div>
                   ) 
-           
-
+            }
+            else if(logo.original_width < this.state.set_dimension.set_width){
+                 return( 
+                    <div className="_display_inline" key = {key}>
+                      <img src={logo.src} width = {this.state.set_dimension.set_width} height = {logo.original_height}/>
+                    </div>
+                  ) 
+            }
             else{
                 return( 
                     <div className="_display_inline" key = {key}>
@@ -105,6 +111,8 @@ class RenderImage extends React.Component{
                     </div>
                   ) 
             }
+
+
          })
         }
         else{
