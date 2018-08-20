@@ -1,18 +1,9 @@
-
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../App.css';
 import {MaxHeightWidth} from './max_height_width';
 import Casey from '../Assests/prague-3540883_640.jpg';
 import Moon  from '../Assests/33841-7.jpg';
-
-// original_dimensions:
-//               {
-//                  original_height: '',
-//                  original_width : ''
-//               },
 
 class RenderImage extends React.Component{
 
@@ -70,39 +61,43 @@ class RenderImage extends React.Component{
 
     render(){
 
-        // let {original_width, original_height} = this.state.original_dimensions;
-        // let {set_width, set_height}           = this.state.set_dimension;
-        const Images_array = [Casey,Moon,Casey,Moon];
-
-        // let final_width, final_height;
-        
-      
+        const Images_array = [Casey,Moon,Casey,Moon];      
         // console.log('original_dimensions',this.state.original_dimensions);
         // console.log('set_dimension',this.state);
         let render_image;
+        let set_height = this.state.set_dimension.set_height;
+        let set_width  = this.state.set_dimension.set_width;
 
         // console.log(this.state._image_dimension);
 
         if(this.state._image_dimension.length >= Images_array.length){
             render_image = this.state._image_dimension.map((logo,key)  => {
 
-            console.log(logo.original_height > this.state.set_dimension.set_height);
-            console.log(logo.original_height);
-
-
-            if(logo.original_height < this.state.set_dimension.set_height){
+            if(logo.original_height < set_height && logo.original_width < set_width ){
                  return( 
                     <div className="_display_inline" key = {key}>
-                      <img src={logo.src} height = {this.state.set_dimension.set_height} width = {logo.original_width}/>
+                      <img src={logo.src} height = {set_height} width = {set_width}/>
                     </div>
                   ) 
             }
-            else if(logo.original_width < this.state.set_dimension.set_width){
+
+            if(logo.original_width < set_width || logo.original_height < set_height){
+
+                if(logo.original_width < set_width){
                  return( 
                     <div className="_display_inline" key = {key}>
-                      <img src={logo.src} width = {this.state.set_dimension.set_width} height = {logo.original_height}/>
+                      <img src={logo.src} width = {set_width} height = {logo.original_height}/>
                     </div>
                   ) 
+                }
+                else{
+                    return( 
+                      <div className="_display_inline" key = {key}>
+                         <img src={logo.src} width = {logo.original_width} height = {set_height}/>
+                      </div>
+                  ) 
+                }
+
             }
             else{
                 return( 
@@ -116,8 +111,6 @@ class RenderImage extends React.Component{
          })
         }
         else{
-            // console.log('hey');
-
              render_image = Images_array.map( (logo,key)  => {
              return( 
                 <div className="_display_inline" key = {key}>
@@ -137,12 +130,3 @@ class RenderImage extends React.Component{
 
 export default RenderImage;
 
-
-
-  // else{
-            //  return(
-            //      <div className="_display_inline" key = {key} id = {key}>
-            //           <img onLoad={this.onImgLoad} src={logo} height = {final_height} width = {final_width}/>
-            //       </div>
-            //   )
-            // }
