@@ -73,7 +73,7 @@ class RenderImage extends React.Component{
         if(this.state._image_dimension.length >= Images_array.length){
             render_image = this.state._image_dimension.map((logo,key)  => {
 
-            if(logo.original_height < set_height && logo.original_width < set_width ){
+            if(logo.original_height > set_height && logo.original_width > set_width ){
                  return( 
                     <div className="_display_inline" key = {key}>
                       <img src={logo.src} height = {set_height} width = {set_width}/>
@@ -81,19 +81,19 @@ class RenderImage extends React.Component{
                   ) 
             }
 
-            if(logo.original_width < set_width || logo.original_height < set_height){
+            if(logo.original_width > set_width || logo.original_height > set_height){
 
-                if(logo.original_width < set_width){
+                if(logo.original_width > set_width){
                  return( 
                     <div className="_display_inline" key = {key}>
-                      <img src={logo.src} width = {set_width} height = {logo.original_height}/>
+                      <img src={logo.src} width = {set_width} />
                     </div>
                   ) 
                 }
                 else{
                     return( 
                       <div className="_display_inline" key = {key}>
-                         <img src={logo.src} width = {logo.original_width} height = {set_height}/>
+                         <img src={logo.src} height = {set_height}/>
                       </div>
                   ) 
                 }
