@@ -31,14 +31,14 @@ class RenderImage extends React.Component{
 
          let render_Image = Images_array.map((logo,key)  => {
              return( 
-                <div className ="_display_inline"> 
+                <div className = "_display_inline">
                     <Dimension src = {logo} id = {key}/>
                 </div>
               )
          })
         
         return (
-            <div className = ""> 
+            <div className ="_display_inline">
                 {render_Image}
             </div>
         );
